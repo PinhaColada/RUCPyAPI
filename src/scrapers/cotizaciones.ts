@@ -39,17 +39,19 @@ export async function scrapeCotizaciones(): Promise<CotizacionesResult> {
   const $ = cheerio.load(html)
   const resultados: Cotizacion[] = []
 
-  $('table').each((_, tabla) => {
-    const titulo = $(tabla).prev('h4').text().trim()
+  $('section.component-table').each((_, seccion) => {
+    const titulo = $(seccion).find('h4').first().text().trim()
     const match = titulo.match(/(\w+)\s+(\d{4})$/)
     if (!match) return
+
+    const tabla = $(seccion).find('table').first()
 
     const mes = match[1]
     const anio = match[2]
     const mesNum = mesANumero(mes)
     if (!mesNum) return
 
-    $(tabla).find('tr').each((i, fila) => {
+    tabla.find('tr').each((i, fila) => {
       if (i < 2) return
 
       const celdas = $(fila).find('td')
