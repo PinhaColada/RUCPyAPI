@@ -1,0 +1,22 @@
+{
+  "name": "rucpy-api",
+  "version": "1.0.0",
+  "description": "API de datos públicos de Paraguay - RUC y cotizaciones",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.7",
+    "cheerio": "^1.2.0",
+    "hono": "^4.7.11",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.29",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}
